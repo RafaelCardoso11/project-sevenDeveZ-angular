@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-register',
-  templateUrl: './home-register.component.html',
-  styleUrls: ['./home-register.component.scss']
+  templateUrl: './home-register.component.html'
 })
 export class HomeRegisterComponent implements OnInit {
 
