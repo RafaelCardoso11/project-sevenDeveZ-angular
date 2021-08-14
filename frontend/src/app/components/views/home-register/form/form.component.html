@@ -11,6 +11,7 @@
     <h1 class="title-form">Crie uma nova conta</h1>
     <form class="contentForm">
       <app-input
+        [user]='user'
         *ngFor="let items of formContainer"
         [name]="items.name"
         [type]="items.type"

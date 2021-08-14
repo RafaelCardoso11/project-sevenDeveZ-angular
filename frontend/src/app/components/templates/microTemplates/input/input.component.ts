@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/components/views/home-register/form/user';
 
 @Component({
   selector: 'app-input',
@@ -12,6 +13,12 @@ export class InputComponent implements OnInit {
     @Input() type = ''
     @Input() placeHolder = ''  
 
+    user = <User> {
+      name: 'asddas',
+      password: '',
+      email:'',
+      phone: null
+    }
 
   constructor() {
   }

@@ -1,4 +1,11 @@
 <div class="inputForm">
-  <label class="title-input" >{{name}}</label>
-  <input  class="form-control" type ="text" id="input" [type]="type" [placeholder]="placeHolder">
+  <label class="title-input">{{ name }}</label>
+  <input
+    class="form-control"
+    type="text"
+    id="input"
+    [type]="type"
+    [placeholder]="placeHolder"
+    [(ngModel)]="user.name"
+  />
 </div>

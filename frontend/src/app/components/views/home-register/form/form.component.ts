@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import {User} from './user'
+import { Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-form',
@@ -28,7 +29,13 @@ export class FormComponent implements OnInit {
       type: 'text'
     }
   ]
-  
+  @Input() user: User = {
+    name: 'asddas',
+    password: '',
+    email:'',
+    phone: null
+  }
+
   constructor() { }
 
   ngOnInit(): void {
