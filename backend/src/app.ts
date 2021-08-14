@@ -28,8 +28,8 @@ class App {
       this.express.use(routes)
     }
 
-    private database (): void {
-      mongoose.connect(`mongodb+srv://${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => { console.log('ok') })
+    private async database (): Promise<void> {
+      await mongoose.connect(`mongodb+srv://${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => { console.log('ok') })
     }
 }
 

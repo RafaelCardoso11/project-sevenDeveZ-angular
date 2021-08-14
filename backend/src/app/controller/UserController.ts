@@ -16,6 +16,14 @@ interface ReturnRequests {
 }
 
 class UserController {
+  public async findUser (_id:string): Promise<ReturnRequests> {
+    if (_id === undefined || _id === null || _id === '') { return { error: true, message: '_id Inexistente' } }
+    const OneUser = await User.findById({ _id }, {
+      password: 0
+    })
+    return { error: false, message: 'Sucessful!', User: OneUser }
+  }
+
   public async create (name:string, email:string, password:string, phone:string): Promise<ReturnRequests> {
     const CheckDates = await this.validator(name, email, password, phone)
     if (CheckDates !== false) {
@@ -26,7 +34,7 @@ class UserController {
           const UserSucessful = { _id: UserCreate.id, name: UserCreate.name, email: UserCreate.email, active: UserCreate.active }
           return { error: false, message: 'Sucessful!', User: UserSucessful }
         } catch (error) {
-          return { error: false, message: error.message }
+          return { error: true, message: error.message }
         }
       } else {
         return { error: true, message: 'este email já existe!' }
