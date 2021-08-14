@@ -1,25 +1,25 @@
 import { Schema, Model, model, Document } from 'mongoose'
-import { hash, genSalt } from 'bcrypt'
+import { hash, genSalt, compareSync } from 'bcrypt'
 import isEmail from 'validator/lib/isEmail'
 
-export interface UserInterface {
+export interface UserInterface extends Document {
     name: string
     email: string
     password: string
     active: string
     phone?: string
+    comparePassword(password: string): boolean
 
   }
+export type IUser = UserInterface
+export type IUserModel = Model<IUser>
 
-export interface UserModel extends UserInterface, Document {
-
-  }
-
-const UserSchema = new Schema({
+export const UserSchema: Schema<IUser> = new Schema({
   email: {
     type: String,
     unique: true,
-    validate: [isEmail, 'Please enter a valid email']
+    validate: [isEmail, 'Please enter a valid email'],
+    minlength: [8, 'Minimum password length is 3 characters']
   },
   password: {
     type: String,
@@ -28,7 +28,8 @@ const UserSchema = new Schema({
   },
   name: {
     type: String,
-    required: [true, 'Please enter Your Name']
+    required: [true, 'Please enter Your Name'],
+    minlength: [3, 'Minimum name length is 3 characters']
   },
   phone: {
     type: String,
@@ -40,13 +41,20 @@ const UserSchema = new Schema({
   timestamps: true
 })
 
-export interface IUser extends Document {
-  password: string
-}
 UserSchema.pre<IUser>('save', async function (next) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const user = this
+  if (!user.isModified('password')) return next()
+
   const salt = await genSalt(12)
   this.password = await hash(this.password, salt)
   next()
 })
 
-export const User: Model<UserModel> = model<UserModel>('User', UserSchema)
+UserSchema.method('comparePassword', function (password: string): boolean {
+  if (compareSync(password, this.password)) { return true } else {
+    return false
+  }
+})
+
+export const User: IUserModel = model<IUser, IUserModel>('User', UserSchema)
