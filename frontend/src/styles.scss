@@ -10,7 +10,11 @@ html{
   font-size: 62.5%;
 }
 body{
-  max-width: 1500px;
+  font-family: 'Poppins', sans-serif;
   background-color: $backgroud-color;
   margin: 0 auto;
+}
+button{
+  border: none;
+  outline: none;
 }

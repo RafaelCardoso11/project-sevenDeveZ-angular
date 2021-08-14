@@ -1,0 +1,15 @@
+@import  '../../../../../../colors/palet.scss';
+.inputForm{
+  margin-bottom: 20px;
+  .title-input{
+    font-size: 3rem;
+    margin-bottom: 5px;
+  }
+  #input{
+    padding: 1.7rem;
+    font-size: 2rem;
+    border: none;
+    background-color: $inputGrey;
+    border-bottom: 3px  solid $purple;
+  }
+}

@@ -1,14 +1,30 @@
 <section class="container">
   <div class="containerBanner">
-    <img src="assets/img/homeRegister/bg-vector-img.svg" class="bg-vector">
-    <img src="assets/img/homeRegister/img.svg" alt="Pessoas conversando" class="img">
+    <img src="assets/img/homeRegister/bg-vector-img.svg" class="bg-vector" />
+    <img
+      src="assets/img/homeRegister/img.svg"
+      alt="Pessoas conversando"
+      class="img"
+    />
   </div>
   <div class="containerForm">
     <h1 class="title-form">Crie uma nova conta</h1>
     <form class="contentForm">
-      <div class="inputForm">
-        <label>Nome</label>
-        <input type="text" class="">
+      <app-input
+        *ngFor="let items of formContainer"
+        [name]="items.name"
+        [type]="items.type"
+        [placeHolder]="items.placeholder"
+      ></app-input>
+      <div class="container-politics mt-5">
+        <input type="checkbox" class="form-check-input" id="inputCheckbox" />
+        <label class="mx-1 pt-2" id="">Política de Privacidade</label>
+      </div>
+      <div class="container-button">
+        <button class="button">Entrar</button>
+      </div>
+      <div class="container-login">
+        <p class="login">Já possui conta? <a routerLink="/login">Entre aqui</a></p>
       </div>
     </form>
   </div>

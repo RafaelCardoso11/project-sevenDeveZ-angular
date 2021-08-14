@@ -12,6 +12,7 @@ import { QuestionsComponent } from './components/views/questions/questions.compo
 import { NewQuestionsComponent } from './components/views/new-questions/new-questions.component';
 import { AboutComponent } from './components/views/home-register/about/about.component';
 import { FormComponent } from './components/views/home-register/form/form.component';
+import { InputComponent } from './components/templates/microTemplates/input/input.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FormComponent } from './components/views/home-register/form/form.compon
     QuestionsComponent,
     NewQuestionsComponent,
     AboutComponent,
-    FormComponent
+    FormComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

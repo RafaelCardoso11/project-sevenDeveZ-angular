@@ -1,0 +1,21 @@
+@import '../../../../../../colors/palet.scss';
+.containerAbout{
+
+  width: 100%;
+  height: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 150px 50px;
+  .title{
+    color: $purple;
+    text-align: right;
+    font-size: 7rem;
+  }
+  .description{
+    font-size: 3rem;
+    text-align: right;
+    padding-top: 30px;
+    opacity: 1;
+  
+  }
+}
