@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'colors/palet.scss';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+  font-size: 62.5%;
+}
+body{
+  font-family: 'Poppins', sans-serif;
+  background-color: $backgroud-color;
+  margin: 0 auto;
+}
+button{
+  border: none;
+  outline: none;
+}
