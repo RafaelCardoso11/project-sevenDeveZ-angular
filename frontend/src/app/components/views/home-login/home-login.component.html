@@ -1,1 +1,23 @@
-<p>home-login works!</p>
+<section class="container">
+  <div class="containerBanner">
+    <img src="assets/img/homeLogin/img.svg"  class="img"/>
+  </div>
+  <div class="containerForm">
+    <h1 class="title-form">Iniciar Sessão</h1>
+    <form class="contentForm">
+      <app-input
+        *ngFor="let items of formContainer"
+        [name]="items.name"
+        [type]="items.type"
+        [placeHolder]="items.placeholder"
+      ></app-input>
+      <div class="container-button">
+        <button class="button" (click)="navigateTo()">Entrar</button>
+      </div>
+      <div class="container-login">
+        <p class="login">Não possui conta? <a routerLink="/">Entre aqui</a></p>
+      </div>
+    </form>
+  </div>
+</section>
+

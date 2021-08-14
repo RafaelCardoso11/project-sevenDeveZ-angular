@@ -1,1 +1,23 @@
-<p>questions works!</p>
+<section class="containerQuestions">
+  <h1 class="titleQuestions">Qual Será a sua Pegunta Hoje?</h1>
+  <swiper [slidesPerView]="1" [spaceBetween]="50"  [pagination]="true"  [navigation]="true">
+    <ng-template swiperSlide>
+      <img src="assets/img/questions/banner.png" alt="" class="banner"
+    /></ng-template>
+    <ng-template swiperSlide>
+      <img src="assets/img/questions/banner2.png" alt="" class="banner"
+    /></ng-template>
+    <ng-template swiperSlide
+      ><img src="assets/img/questions/banner3.png" alt="" class="banner"
+    /></ng-template>
+  </swiper>
+
+  <h1 class="subtitleQuestions">Perguntas Recentes</h1>
+  <div class="card-container" *ngFor="let card of cards">
+    <div class="card">
+      <h1 class="titleCard">
+        {{ card.title }}
+      </h1>
+    </div>
+  </div>
+</section>

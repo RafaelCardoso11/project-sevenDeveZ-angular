@@ -1,4 +1,23 @@
 @import ".../../../../../../../colors/palet.scss";
+.containerVector {
+  position: relative;
+  overflow: hidden;
+  
+  .vector1 {
+    position: absolute;
+    width: 4000px;
+    margin-bottom: 45px;
+    
+    path {
+      fill: #6d06bf;
+    }
+  }
+  .vector2 {
+    position: relative;
+    width: 100%;
+    z-index: -1;
+  }
+}
 .footerContainer {
   width: 100%;
   height: 100%;
@@ -10,11 +29,11 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    .logoSeven{
+    .logoSeven {
       margin-top: 40px;
       width: 250px;
     }
-    .logoMoon{
+    .logoMoon {
       width: 150px;
     }
     .group-collum {
@@ -33,7 +52,6 @@
       font-size: 1.8rem;
       color: white;
       text-align: right;
-   
     }
   }
 }
