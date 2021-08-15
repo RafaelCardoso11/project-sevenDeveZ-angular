@@ -1,4 +1,4 @@
-@import '../../../../../colors/palet.scss';
+@import 'src/colors/palet.scss';
 .containerQuestions {
   max-width: 1600px;
   height: 100%;
@@ -6,16 +6,15 @@
   margin: 0 auto;
 
   .titleQuestions {
-    font-size: 9rem;
+    font-size: 6rem;
     font-weight: 100;
     padding: 100px 140px;
 
-    margin-bottom: 100px;
   }
   .banner{
     width: 90%;
-    height: 550px;
-    margin: 0px 50px;
+    height: 400px;
+ 
   }
   .subtitleQuestions{
     font-size: 5rem;
@@ -28,9 +27,9 @@
     margin: 0 auto;
     .card{
       width: 100%;
-      box-shadow: 0px 0px 1px;
+      box-shadow: 1px 1px 3px;
       padding: 50px 40px;
-      margin-top: 20px;
+      margin-top: 40px;
       background-color: transparent;
       border: none;
       border-bottom: 3px solid $purple;

@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 
 import { UserRegister } from '../../../../interfaces/userActions'
 import { Component,  OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/crud.service';
+import { authService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-form',
@@ -66,9 +66,9 @@ export class FormComponent implements OnInit {
     }
   ]
 
-  politica: Boolean;
+  politica = Boolean;
 
-  constructor(private router: Router, private crudService: CrudService) { }
+  constructor(private router: Router, private authService: authService) { }
 
   ngOnInit(): void{
   
@@ -102,8 +102,7 @@ export class FormComponent implements OnInit {
   registerUser() {
     this.insertUserToInterface();
     this.validateLogin();
-    this.crudService.newUser(this.user).subscribe((req) => {
-   
+    this.authService.newUser(this.user).subscribe(()=> {
       this.router.navigate(['/login'])
     }, err => {
       console.log(err)

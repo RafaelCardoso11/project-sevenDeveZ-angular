@@ -9,3 +9,6 @@ export interface UserLogin{
   password: String,
   Token?: String
 }
+export interface getBearerTokenUser{
+  token: String
+}

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeRegisterComponent implements OnInit {
 
   constructor() { }
-
+  userAuthenticated = false;
   ngOnInit(): void {
   }
 

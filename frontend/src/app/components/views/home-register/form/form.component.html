@@ -9,7 +9,7 @@
   </div>
   <div class="containerForm">
     <h1 class="title-form">Crie uma nova conta</h1>
-    <form class="was-validated" novalidate>
+    <form class="was-validated" id="form" novalidate>
       <app-input
         *ngFor="let items of formContainer"
         [name]="items.name"
@@ -31,7 +31,7 @@
       </div>
       
       <div class="container-button">
-        <button class="button" (click)="registerUser()" type="submit">Criar</button>
+        <button class="button" (click)="registerUser()" type="submit" [disabled]="!politica">Criar</button>
       </div>
       <div class="container-login">
         <p class="login">

@@ -1,4 +1,4 @@
-@import '../../../../../colors/palet.scss';
+@import 'src/colors/palet.scss';
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(600px, 2fr));
@@ -16,7 +16,9 @@
   }
   .containerForm {
     width: 100%;
+  
     margin-top: 150px;
+ 
     .title-form {
       font-size: 6rem;
       text-align: center;

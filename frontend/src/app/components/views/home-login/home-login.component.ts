@@ -1,4 +1,4 @@
-import { CrudService } from 'src/app/services/crud.service';
+import { authService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
@@ -26,7 +26,7 @@ export class HomeLoginComponent implements OnInit {
         "is-valid": true
       },
       date: '',
-      valid:''
+      valid: ''
     },
     {
       name: 'Senha',
@@ -38,10 +38,10 @@ export class HomeLoginComponent implements OnInit {
         "is-valid": true
       },
       date: '',
-      valid:''
+      valid: ''
     }
   ]
-  constructor(private router: Router, private crudService: CrudService) { }
+  constructor(private router: Router, private authService: authService) { }
 
   ngOnInit(): void {
   }
@@ -51,13 +51,12 @@ export class HomeLoginComponent implements OnInit {
   }
   loginUser() {
     this.insertUserToInterface();
-    this.crudService.joinUser(this.user).subscribe((bearer) => {
-      localStorage.setItem("bearer token", String(bearer.Token))
-
-      this.router.navigate(['/perguntas'])
+    this.authService.joinUser(this.user).subscribe((user) => {
+      localStorage.setItem("bearer token", String(user.Token))
+      this.router.navigate(['/'])
     }, err => {
       console.log(err)
-     this.formContainer[0].valid = String(err.error.message)
+      this.formContainer[0].valid = String(err.error.message)
     })
   }
 }
