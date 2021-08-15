@@ -1,4 +1,5 @@
-import { User } from '../components/views/home-register/form/user';
+
+import { UserRegister, UserLogin } from '../interfaces/userActions';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,9 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class CrudService {
   baseUrl = "https://apisevendevz.herokuapp.com/user"
+  baseUrlLogin = "https://apisevendevz.herokuapp.com/login"
+  
   constructor(private http: HttpClient) { }
   
-  newUser(user: User): Observable<User>{
-    return this.http.post<User>(this.baseUrl, user)
+  newUser(user: UserRegister): Observable<UserRegister>{
+    return this.http.post<UserRegister>(this.baseUrl, user) 
+  }
+  
+  joinUser(user: UserLogin): Observable<UserLogin>{
+    return this.http.post<UserLogin>(this.baseUrlLogin, user) 
   }
 }
+
