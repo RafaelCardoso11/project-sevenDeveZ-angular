@@ -1,5 +1,6 @@
+
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'src/app/components/views/home-register/form/user';
+
 
 @Component({
   selector: 'app-input',
@@ -8,23 +9,22 @@ import { User } from 'src/app/components/views/home-register/form/user';
 })
 export class InputComponent implements OnInit {
 
-  
-    @Input() name = ''
-    @Input() type = ''
-    @Input() placeHolder = ''  
 
-    user = <User> {
-      name: 'asddas',
-      password: '',
-      email:'',
-      phone: null
-    }
+  @Input() name = ''
+  @Input() type = ''
+  @Input() placeHolder = ''
+
+  @Input() date: ''
+  @Input() mask = ''
+  @Input() class = {}
+  @Input() valid = ''
 
   constructor() {
   }
 
 
   ngOnInit(): void {
+
   }
 
 }

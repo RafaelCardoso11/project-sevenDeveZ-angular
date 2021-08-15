@@ -1,6 +1,8 @@
+import { CrudService } from 'src/app/services/crud.service';
 import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
+import { UserLogin } from 'src/app/interfaces/userActions';
 
 @Component({
   selector: 'app-home-login',
@@ -8,23 +10,54 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-login.component.scss']
 })
 export class HomeLoginComponent implements OnInit {
+  user = <UserLogin>{
+    email: '',
+    password: ''
+  }
+
   formContainer = [
     {
-      name: 'Nome',
-      placeholder: 'Samuel do Amor',
-      type: 'text'
+      name: 'Email',
+      placeholder: 'Exemplo@sevendevz.com',
+      type: 'email',
+      class: {
+        "form-control": true,
+        "is-invalid": false,
+        "is-valid": true
+      },
+      date: '',
+      valid:''
     },
     {
       name: 'Senha',
       placeholder: '******************',
-      type: 'password'
+      type: 'password',
+      class: {
+        "form-control": true,
+        "is-invalid": false,
+        "is-valid": true
+      },
+      date: '',
+      valid:''
     }
   ]
-  constructor(private router: Router) { }
+  constructor(private router: Router, private crudService: CrudService) { }
 
   ngOnInit(): void {
   }
-  navigateTo(){
-    this.router.navigate(['/perguntas'])
+  insertUserToInterface() {
+    this.user.email = String(this.formContainer[0].date)
+    this.user.password = String(this.formContainer[1].date)
+  }
+  loginUser() {
+    this.insertUserToInterface();
+    this.crudService.joinUser(this.user).subscribe((bearer) => {
+      localStorage.setItem("bearer token", String(bearer.Token))
+
+      this.router.navigate(['/perguntas'])
+    }, err => {
+      console.log(err)
+     this.formContainer[0].valid = String(err.error.message)
+    })
   }
 }

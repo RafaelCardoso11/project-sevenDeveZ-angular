@@ -1,0 +1,32 @@
+.pageNotFoud{
+ display: flex;
+ height: 55vh;
+ .img{
+   position: relative;
+   max-width: 1000px;
+   height: 1000px;
+   z-index: -1;
+    top: -160px;
+ }
+ .title{
+  font-size:  9rem;
+ }
+ .subtitle{
+    line-height: 50px;
+   font-size: 3rem;
+ }
+ .redirectContainer{
+   position: fixed;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-end;
+   bottom: 100px;
+   right:50px;
+   font-size: 2.3rem;
+  
+   .redirect{
+
+   }
+ }
+}

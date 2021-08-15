@@ -1,3 +1,4 @@
+import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { QuestionsComponent } from './components/views/questions/questions.component';
 import { HomeLoginComponent } from './components/views/home-login/home-login.component';
 import { HomeRegisterComponent } from './components/views/home-register/home-register.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'perguntas',
     component: QuestionsComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponentComponent
   }
 ];
 

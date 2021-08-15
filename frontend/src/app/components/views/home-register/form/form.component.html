@@ -9,23 +9,34 @@
   </div>
   <div class="containerForm">
     <h1 class="title-form">Crie uma nova conta</h1>
-    <form class="contentForm">
+    <form class="was-validated" novalidate>
       <app-input
-        [user]='user'
         *ngFor="let items of formContainer"
         [name]="items.name"
         [type]="items.type"
+        [mask]="items.mask"
+        [class]="items.class"
         [placeHolder]="items.placeholder"
+        [(ngModel)]="items.date"
+        [valid] = 'items.valid'
+        ngDefaultControl
+        required
       ></app-input>
-      <div class="container-politics mt-5">
-        <input type="checkbox" class="form-check-input" id="inputCheckbox" />
+
+      <div class="container-politics mt-5" >
+        
+        <input type="checkbox" class="form-check-input" id="inputCheckbox" [value]="politica" />
         <label class="mx-1 pt-2" id="">Política de Privacidade</label>
+        <label *ngIf="politica">Marque a opção</label>
       </div>
+      
       <div class="container-button">
-        <button class="button">Criar</button>
+        <button class="button" (click)="registerUser()" type="submit">Criar</button>
       </div>
       <div class="container-login">
-        <p class="login">Já possui conta? <a routerLink="/login">Entre aqui</a></p>
+        <p class="login">
+          Já possui conta? <a routerLink="/login">Entre aqui</a>
+        </p>
       </div>
     </form>
   </div>

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 
-import { User } from './user'
-import { Component, OnInit } from '@angular/core';
+import { UserRegister } from '../../../../interfaces/userActions'
+import { Component,  OnInit } from '@angular/core';
 import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { CrudService } from 'src/app/services/crud.service';
 
 export class FormComponent implements OnInit {
 
-  user = <User>{
+  user = <UserRegister>{
     name: '',
     password: '',
     email: '',
@@ -23,46 +23,89 @@ export class FormComponent implements OnInit {
       name: 'Nome',
       placeholder: 'Samuel do Amor',
       type: 'text',
+      class: {
+        "form-control": true,
+        "is-invalid": false,
+        "is-valid": false
+      },
       date: String
     },
     {
       name: 'Senha',
       placeholder: '******************',
       type: 'password',
+      class: {
+        "form-control": true,
+        "is-invalid": false,
+        "is-valid": false
+      },
       date: String
     },
     {
       name: 'Email',
       placeholder: 'name@example.com',
       type: 'email',
+      class: {
+        "form-control": true,
+        "is-invalid": false,
+        "is-valid": false
+      },
       date: String
     },
     {
       name: 'Telefone',
       placeholder: '(91) 9836-2202',
       type: 'text',
+      class: {
+        "form-control": true,
+        "is-invalid": false,
+        "is-valid": false
+      },
+      mask: '(00) 0 0000-0000',
       date: Number
     }
   ]
 
+  politica: Boolean;
 
   constructor(private router: Router, private crudService: CrudService) { }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void{
+  
   }
-  console() {
-
-    this.formContainer.forEach(element => {
-    console.log(element.date)
-      
-    });
-
+  
+  ngOnChanges(): void {
+   
   }
-  createUser() {
-    this.crudService.newUser(this.user).subscribe(()=>{
+  validateLogin() {
+        
+      this.formContainer[0].class['is-invalid'] = true;
+      this.formContainer[1].class['is-invalid'] = true;
+      this.formContainer[2].class['is-invalid'] = true;
+      this.formContainer[3].class['is-invalid'] = true;
+      console.log(this.formContainer[1].class)
+
+    // else{
+    //   this.formContainer[0].class['is-valid'] = true;
+    //   this.formContainer[1].class['is-valid'] = true;
+    //   this.formContainer[2].class['is-valid'] = true;
+    //   this.formContainer[3].class['is-valid'] = true;
+    // }
+  }
+
+  insertUserToInterface() {
+    this.user.name = String(this.formContainer[0].date)
+    this.user.password = String(this.formContainer[1].date)
+    this.user.email = String(this.formContainer[2].date)
+    this.user.phone = Number(this.formContainer[3].date)
+  }
+  registerUser() {
+    this.insertUserToInterface();
+    this.validateLogin();
+    this.crudService.newUser(this.user).subscribe((req) => {
+   
       this.router.navigate(['/login'])
-    }, err =>{
+    }, err => {
       console.log(err)
     })
   }

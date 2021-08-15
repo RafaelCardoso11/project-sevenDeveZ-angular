@@ -2,6 +2,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SwiperModule } from 'swiper/angular';
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
+
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +20,8 @@ import { NewQuestionsComponent } from './components/views/new-questions/new-ques
 import { AboutComponent } from './components/views/home-register/about/about.component';
 import { FormComponent } from './components/views/home-register/form/form.component';
 import { InputComponent } from './components/templates/microTemplates/input/input.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 
 
 @NgModule({
@@ -27,12 +35,17 @@ import { InputComponent } from './components/templates/microTemplates/input/inpu
     NewQuestionsComponent,
     AboutComponent,
     FormComponent,
-    InputComponent
+    InputComponent,
+    PageNotFoundComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
