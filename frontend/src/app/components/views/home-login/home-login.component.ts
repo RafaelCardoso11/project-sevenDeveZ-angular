@@ -53,7 +53,7 @@ export class HomeLoginComponent implements OnInit {
     this.insertUserToInterface();
     this.authService.joinUser(this.user).subscribe((user) => {
       localStorage.setItem("bearer token", String(user.Token))
-      this.router.navigate(['/'])
+      this.router.navigate(['/']);
     }, err => {
       console.log(err)
       this.formContainer[0].valid = String(err.error.message)

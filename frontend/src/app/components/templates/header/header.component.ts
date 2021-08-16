@@ -16,9 +16,18 @@ export class HeaderComponent implements OnInit {
   showMenu() {
     this.menuShow = !this.menuShow;
   }
-  userAuthenticated = true
+  userAuthenticated = true;
 
+  classContainerDisconected = {
+    containerDisconected:true,
+    active: false
+  }
   disconnectUser() {
+    let ContainerDisconected = document.querySelector('.containerDisconected')
+    ContainerDisconected.classList.toggle('active')
     this.authService.disconnect();
+    setTimeout(() => {
+      ContainerDisconected.classList.remove('active')
+    }, 2000);
   }
 }

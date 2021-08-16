@@ -2,15 +2,13 @@
   <a routerLink="/"
     ><img src="assets/img/header/logo.svg" alt="logo" class="logo"
   /></a>
-
-
   <nav class="menu" *ngIf="userAuthenticated">
     <button class="btnMenu" (click)="showMenu()">Menu</button>
     <nav class="nav-bar" *ngIf="menuShow">
       <ul class="p-0">
-        <li class="items-nav">
+        <li class="items-nav" routerLink="/NovaPergunta">
           <i class="las la-plus"></i>
-          <p routerLink="/NovaPergunta">Nova Pergunta</p>
+          <p>Nova Pergunta</p>
         </li>
         <li class="items-nav">
           <i class="las la-comment-alt"></i>
@@ -27,5 +25,8 @@
       </ul>
     </nav>
   </nav>
-  
+  <div class="containerDisconected">
+    <div class="containerHide" id="left"></div>
+    <div class="containerHide" id="right"></div>
+  </div>
 </header>

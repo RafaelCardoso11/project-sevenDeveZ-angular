@@ -16,9 +16,11 @@ export class authService {
   baseUserAuthenticated = "https://apisevendevz.herokuapp.com/users"
 
   getToken = <getBearerTokenUser>{
-    token: String(localStorage.getItem("bearer token")),
-    error: Boolean
+    token: localStorage.getItem("bearer token"),
+    error: null
   }
+
+  returnAuthenticated:Boolean;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -35,16 +37,15 @@ export class authService {
       this.baseUserAuthenticated,
       {
         headers: {
-          'Authorization': 'BearerToken' + ' ' + token
+          'Authorization': 'BearerToken' + ' ' + token,
         }
       })
   }
-  userIsAuthenticated(){
-    this.userAuthenticated(this.getToken.token).subscribe((res) => {
-      console.log(res.token)
-    }, err => {
-     
-    })
+  userIsAuthenticated(): Boolean{
+      this.userAuthenticated(this.getToken.token).subscribe((res)=> {
+        return this.returnAuthenticated = res.error;
+      });
+      return this.returnAuthenticated;
   }
 
   disconnect(){

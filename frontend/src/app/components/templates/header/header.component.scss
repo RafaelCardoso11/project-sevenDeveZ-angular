@@ -1,4 +1,5 @@
 @import "src/colors/palet.scss";
+@import "src/animations/main.scss";
 .headerContainer {
   position: fixed;
   z-index: 3;
@@ -8,7 +9,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
   .logo {
     padding: 0px 20px;
     height: 50px;
@@ -43,7 +43,7 @@
       align-items: center;
       position: absolute;
       z-index: 3;
-     
+
       right: 200px;
       font-size: 2rem;
       &::after {
@@ -68,26 +68,48 @@
         margin-top: 40px;
         margin-left: 10px;
         cursor: pointer;
-        &:hover{
+        &:hover {
           opacity: 0.8;
           color: #930bff;
         }
-        i{
+        i {
           text-align: center;
           align-items: center;
           font-size: 3rem;
           padding: 0px 10px;
         }
-     
       }
     }
   }
-}
-@keyframes showMenu {
-  from{
-    transform: translateX(50px);
+  .containerDisconected{
+    display: none;
   }
-  to{
-    transform: translateX(0);
+  .containerDisconected.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+    .containerHide {
+      position: absolute;
+      z-index: -1;
+      width: 50vw;
+      height: 100%;
+      background-color: $purple;
+    }
+
+    #left {
+      left: 0;
+
+      animation: disconectAnimationComponenteLeft 2s ease-in-out alternate-reverse forwards;
+    }
+    #right {
+      right: 0;
+    
+      animation: disconectAnimationComponenteRight 2s ease-in-out alternate-reverse forwards;
+    }
   }
 }

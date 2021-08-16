@@ -10,5 +10,6 @@ export interface UserLogin{
   Token?: String
 }
 export interface getBearerTokenUser{
-  token: String
+  token?: String,
+  error?: Boolean
 }
