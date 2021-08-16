@@ -1,6 +1,6 @@
 import isEmail from 'validator/lib/isEmail'
 import { sign } from 'jsonwebtoken'
-import { User } from '../models/UserSchema'
+import { User } from '../../models/UserSchema'
 
 interface ReturnRequests {
   error:boolean
@@ -16,6 +16,14 @@ interface ReturnRequests {
 }
 
 class UserController {
+  public async findUser (_id:string): Promise<ReturnRequests> {
+    if (_id === undefined || _id === null || _id === '') { return { error: true, message: '_id Inexistente' } }
+    const OneUser = await User.findById({ _id }, {
+      password: 0
+    })
+    return { error: false, message: 'Sucessful!', User: OneUser }
+  }
+
   public async create (name:string, email:string, password:string, phone:string): Promise<ReturnRequests> {
     const CheckDates = await this.validator(name, email, password, phone)
     if (CheckDates !== false) {
@@ -26,10 +34,10 @@ class UserController {
           const UserSucessful = { _id: UserCreate.id, name: UserCreate.name, email: UserCreate.email, active: UserCreate.active }
           return { error: false, message: 'Sucessful!', User: UserSucessful }
         } catch (error) {
-          return { error: false, message: error.message }
+          return { error: true, message: error.message }
         }
       } else {
-        return { error: true, message: 'este email já existe!' }
+        return { error: true, message: 'Este email já existe!' }
       }
     } else {
       return { error: true, message: 'Falta de Dados!' }
@@ -90,14 +98,14 @@ class UserController {
             return { error: true, message: 'Senha incorreta!' }
           }
         } catch (error) {
-          return { error: true, message: 'Senha incorreta!' }
+          return { error: true, message: 'Dados Incorretos' }
         }
       } else {
-        return { error: true, message: 'Falta de Dados!' }
+        return { error: true, message: 'Senha Ausente' }
       }
     } else {
-      return { error: true, message: 'Falta de Dados!' }
+      return { error: true, message: 'Email Ausente' }
     }
   }
 }
-export = new UserController();
+export default new UserController()
