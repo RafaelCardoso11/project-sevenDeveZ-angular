@@ -1,4 +1,7 @@
+import { authService } from 'src/app/services/auth.service';
+
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  user = {
+  createdAt: "",
+  email: "",
+  name: "",
+  phone: "",
+  updatedAt: "",
+}
+token = window.localStorage.getItem('bearer token')
+constructor(private authService: authService) { }
 
-  constructor() { }
+ngOnInit(): void {
+  this.authService.userAuthenticated(this.token).subscribe(user => {
+    console.log(user['User'].name)
+    this.user.name = user['User'].name
+  })
+}
 
-  ngOnInit(): void {
-  }
 
 }
