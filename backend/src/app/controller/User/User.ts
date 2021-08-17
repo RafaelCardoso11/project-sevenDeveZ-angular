@@ -1,35 +1,30 @@
 import isEmail from 'validator/lib/isEmail'
 import { sign } from 'jsonwebtoken'
-import { User } from '../models/UserSchema'
+import { UserModel } from '../../models/UserSchema'
+import { ReturnRequests, EditInterface } from './InterfaceUsers'
+class User {
+  public async findUser (_id:string): Promise<ReturnRequests> {
+    if (_id === undefined || _id === null || _id === '') { return { error: true, message: '_id Inexistente' } }
+    const OneUser = await UserModel.findById({ _id }, {
+      password: 0
+    })
+    return { error: false, message: 'Sucessful!', User: OneUser }
+  }
 
-interface ReturnRequests {
-  error:boolean
-  message:string
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  User?: object
-  Token?:string
-}
- interface EditInterface {
-  name:string
-  email:string
-  phone:string
-}
-
-class UserController {
   public async create (name:string, email:string, password:string, phone:string): Promise<ReturnRequests> {
     const CheckDates = await this.validator(name, email, password, phone)
     if (CheckDates !== false) {
       const checkEmailExist = await this.FindEmail(email)
       if (checkEmailExist !== false) {
         try {
-          const UserCreate = await User.create({ name, email, password, phone, active: true })
+          const UserCreate = await UserModel.create({ name, email, password, phone, active: true })
           const UserSucessful = { _id: UserCreate.id, name: UserCreate.name, email: UserCreate.email, active: UserCreate.active }
           return { error: false, message: 'Sucessful!', User: UserSucessful }
         } catch (error) {
-          return { error: false, message: error.message }
+          return { error: true, message: error.message }
         }
       } else {
-        return { error: true, message: 'este email já existe!' }
+        return { error: true, message: 'Este email já existe!' }
       }
     } else {
       return { error: true, message: 'Falta de Dados!' }
@@ -45,7 +40,7 @@ class UserController {
   }
 
   private async FindEmail (searchEmail:string):Promise<boolean> {
-    const user = await User.findOne({ email: searchEmail })
+    const user = await UserModel.findOne({ email: searchEmail })
     if (user !== null && user.email.length > 0) { return false }
     return true
   }
@@ -55,7 +50,7 @@ class UserController {
     // eslint-disable-next-line @typescript-eslint/ban-types
     const update:object = { active: false }
     try {
-      const userUpdate = await User.findByIdAndUpdate(_id, update)
+      const userUpdate = await UserModel.findByIdAndUpdate(_id, update)
       const UserSucessful = { _id: userUpdate.id, name: userUpdate.name, email: userUpdate.email, active: userUpdate.active }
       return { error: false, message: 'Inactive Sucessful!', User: UserSucessful }
     } catch (error) {
@@ -65,7 +60,7 @@ class UserController {
 
   public async userEdit (_id:string, data:EditInterface): Promise<ReturnRequests> {
     try {
-      const UserFind = await User.findById(_id)
+      const UserFind = await UserModel.findById(_id)
       UserFind.name = data.name || UserFind.name
       UserFind.phone = data.phone || UserFind.phone
       UserFind.email = data.email || UserFind.email
@@ -79,7 +74,7 @@ class UserController {
   public async Login (email:string, password:string): Promise<ReturnRequests> {
     if (email !== undefined && isEmail(email) === true) {
       if (password !== undefined && password !== '') {
-        const userLogin = await User.findOne({ email })
+        const userLogin = await UserModel.findOne({ email })
         try {
           const Passok = await userLogin.comparePassword(password)
           const token = sign({ _id: userLogin._id }, process.env.JWT, { expiresIn: '1day' })
@@ -90,14 +85,14 @@ class UserController {
             return { error: true, message: 'Senha incorreta!' }
           }
         } catch (error) {
-          return { error: true, message: 'Senha incorreta!' }
+          return { error: true, message: 'Dados Incorretos' }
         }
       } else {
-        return { error: true, message: 'Falta de Dados!' }
+        return { error: true, message: 'Senha Ausente' }
       }
     } else {
-      return { error: true, message: 'Falta de Dados!' }
+      return { error: true, message: 'Email Ausente' }
     }
   }
 }
-export = new UserController();
+export default new User()

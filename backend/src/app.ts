@@ -29,7 +29,7 @@ class App {
     }
 
     private database (): void {
-      mongoose.connect(`mongodb+srv://${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => { console.log('ok') })
+      mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => { console.log('ok') })
     }
 }
 

@@ -57,4 +57,4 @@ UserSchema.method('comparePassword', function (password: string): boolean {
   }
 })
 
-export const User: IUserModel = model<IUser, IUserModel>('User', UserSchema)
+export const UserModel: IUserModel = model<IUser, IUserModel>('User', UserSchema)
