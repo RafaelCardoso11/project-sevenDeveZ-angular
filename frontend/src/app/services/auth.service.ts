@@ -2,8 +2,9 @@
 import { UserRegister, UserLogin, getBearerTokenUser } from '../interfaces/userActions';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class authService {
     error: null
   }
 
-  returnAuthenticated:Boolean;
+  returnAuthenticated: Boolean;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -33,7 +34,7 @@ export class authService {
   }
 
   userAuthenticated(token): Observable<getBearerTokenUser> {
-    return this.http.get<getBearerTokenUser>(
+    return this.http.get<any>(
       this.baseUserAuthenticated,
       {
         headers: {
@@ -41,14 +42,7 @@ export class authService {
         }
       })
   }
-  userIsAuthenticated(): Boolean{
-      this.userAuthenticated(this.getToken.token).subscribe((res)=> {
-        return this.returnAuthenticated = res.error;
-      });
-      return this.returnAuthenticated;
-  }
-
-  disconnect(){
+  disconnect() {
     localStorage.removeItem("bearer token");
     setTimeout(() => {
       this.router.navigate(['/login'])
