@@ -2,12 +2,37 @@
   <h1 class="title">Nova pergunta</h1>
   <form class="containerQuestion">
     <label for="" class="nameLabel form-label">Título</label>
-    <input type="text" class="titleQuestion form-control" placeholder="Título"/>
+    <input
+      type="text"
+      class="titleQuestion form-control"
+      [(ngModel)]="title"
+      placeholder="Título"
+    />
     <label for="" class="nameLabel form-label">Escreva Sua Dúvida</label>
-    <textarea cols="30" rows="5"  maxlength="350"class="question form-control" placeholder="Escreva sua dúvida Nesse Campo, por favor tente esclarecer o máximo possível"></textarea>
+    <textarea
+      cols="30"
+      rows="5"
+      maxlength="350"
+      class="question form-control"
+  
+      placeholder="Escreva sua dúvida Nesse Campo, por favor tente esclarecer o máximo possível"
+    ></textarea>
     <div class="container-button">
-      <button class="button" type="submit" >Nova pergunta</button>
+      <select class="dropdown">
+        <option>Tags</option>
+        <option>Node Js</option>
+        <option>Angular</option>
+        <option>React</option>
+        <option>PHP</option>
+      </select>
+      <button class="button" type="submit" (click)="addNewQuestion()">
+        Nova pergunta
+      </button>
     </div>
   </form>
-  <img src="assets/img/questions/student.svg" alt="student" class="img-student">
+  <img
+    src="assets/img/questions/student.svg"
+    alt="student"
+    class="img-student"
+  />
 </section>

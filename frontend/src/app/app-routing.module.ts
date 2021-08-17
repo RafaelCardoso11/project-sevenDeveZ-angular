@@ -1,3 +1,4 @@
+import { ProfileComponent } from './components/views/profile/profile.component';
 import { NewQuestionsComponent } from './components/views/new-questions/new-questions.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { QuestionsComponent } from './components/views/questions/questions.component';
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path: 'NovaPergunta',
     component: NewQuestionsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'perfil',
+    component: ProfileComponent,
     canActivate: [AuthGuard]
   },
   {

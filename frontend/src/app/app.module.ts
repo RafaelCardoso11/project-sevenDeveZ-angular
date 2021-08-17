@@ -22,6 +22,7 @@ import { FormComponent } from './components/views/home-register/form/form.compon
 import { InputComponent } from './components/templates/microTemplates/input/input.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { ProfileComponent } from './components/views/profile/profile.component';
 
 
 
@@ -37,7 +38,8 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
     AboutComponent,
     FormComponent,
     InputComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -11,5 +11,5 @@ export interface UserLogin{
 }
 export interface getBearerTokenUser{
   token?: String,
-  error?: Boolean
+  error?: boolean
 }

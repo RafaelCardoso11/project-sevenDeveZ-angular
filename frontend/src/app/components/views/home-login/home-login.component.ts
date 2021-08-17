@@ -41,9 +41,14 @@ export class HomeLoginComponent implements OnInit {
       valid: ''
     }
   ]
-  constructor(private router: Router, private authService: authService) { }
+  constructor(
+    private router: Router,
+    private authService: authService,
+
+  ) { }
 
   ngOnInit(): void {
+
   }
   insertUserToInterface() {
     this.user.email = String(this.formContainer[0].date)
@@ -52,8 +57,8 @@ export class HomeLoginComponent implements OnInit {
   loginUser() {
     this.insertUserToInterface();
     this.authService.joinUser(this.user).subscribe((user) => {
-      localStorage.setItem("bearer token", String(user.Token))
       this.router.navigate(['/']);
+      localStorage.setItem("bearer token", String(user.Token))
     }, err => {
       console.log(err)
       this.formContainer[0].valid = String(err.error.message)

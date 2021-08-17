@@ -1,5 +1,6 @@
 import { authService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Emitters } from 'src/app/emitters/emitters';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor(private authService: authService) { }
-
+  name = ''
   ngOnInit(): void {
+    Emitters.nameProfile.subscribe((res)=>{
+      this.name = res
+    })
   }
   menuShow = false;
   showMenu() {
     this.menuShow = !this.menuShow;
   }
-  userAuthenticated = true;
-
+  
   classContainerDisconected = {
-    containerDisconected:true,
+    containerDisconected: true,
     active: false
   }
   disconnectUser() {

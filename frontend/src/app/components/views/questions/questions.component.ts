@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { readQuestion } from 'src/app/interfaces/questionsActions';
+import { QuestionsService } from 'src/app/services/questions.service';
 
 
 @Component({
@@ -8,41 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionsComponent implements OnInit {
 
-  cards = [
-    {
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatisLorem ipsum dolor sit amet, consectetur adipiscing elit ut............',
-      totalComments: 10,
-      author: 'Pedro',
-      tag: 'React Js'
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatisLorem ipsum dolor sit amet, consectetur adipiscing elit ut............',
-      totalComments: 13,
-      author: 'Pedro',
-      tag: 'Angular 11'
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatisLorem ipsum dolor sit amet, consectetur adipiscing elit ut............',
-      totalComments: 19,
-      author: 'Pedro',
-      tag: 'PHP'
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatisLorem ipsum dolor sit amet, consectetur adipiscing elit ut............',
-      totalComments: 20,
-      author: 'Pedro',
-      tag: 'Vue Js'
-    },
-    {
-      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatisLorem ipsum dolor sit amet, consectetur adipiscing elit ut............',
-      totalComments: 10,
-      author: 'Pedro',
-      tag: 'ReactNative Js'
-    }
-  ]
-  constructor() { }
+  cards =[]
+  constructor(
+    private controllerQuestions: QuestionsService
+  ) { }
 
   ngOnInit(): void {
+    this.controllerQuestions.readQuestion().subscribe(readDate => {
+      readDate['Question'].forEach(element => {
+        this.cards.push({
+          title: element.title,
+          body: element.body,
+          tags: element.tags,
+          totalComments: element.totalComments,
+          author: element.author
+        })
+     
+      });
+
+    })
   }
 
 }
