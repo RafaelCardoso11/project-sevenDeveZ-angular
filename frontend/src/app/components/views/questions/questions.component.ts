@@ -25,7 +25,6 @@ export class QuestionsComponent implements OnInit {
           totalComments: element.totalComments,
           author: element.author
         })
-     
       });
 
     })

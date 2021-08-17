@@ -1,5 +1,5 @@
 import { authService } from 'src/app/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Emitters } from 'src/app/emitters/emitters';
 
 @Component({
@@ -10,13 +10,13 @@ import { Emitters } from 'src/app/emitters/emitters';
 export class HeaderComponent implements OnInit {
 
   constructor(private authService: authService) { }
+  menuShow = false;
   name = ''
   ngOnInit(): void {
     Emitters.nameProfile.subscribe((res)=>{
       this.name = res
     })
   }
-  menuShow = false;
   showMenu() {
     this.menuShow = !this.menuShow;
   }

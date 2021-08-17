@@ -16,10 +16,13 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   token = localStorage.getItem('bearer token');
+
   canActivate() {
     return this.authService.userAuthenticated(this.token).toPromise()
     .catch(()=>{
-      this.router.navigate(['/login']);
+      if(!this.token){
+        this.router.navigate(['/login'])
+      }
       return false;
     }).then((res)=>{
       Emitters.nameProfile.emit(res['User'].name)

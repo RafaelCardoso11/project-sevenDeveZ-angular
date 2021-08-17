@@ -1,1 +1,67 @@
-<p>profile works!</p>
+<section class="container-profile">
+  <header class="containerBanner">
+    <img src="assets/img/questions/banner.png" alt="" class="bannerProfile" />
+  </header>
+  <main class="container-body">
+    <div class="content-card">
+      <div class="container-imgProfile">
+        {{ user.name | notImage }}
+      </div>
+      <div class="profile">
+        <label class="label-name">Nome</label>
+        <h1 class="name">{{ user.name }}</h1>
+      </div>
+    </div>
+    <div class="content-card">
+      <div class="socialNetwork">
+        <i class="lab la-linkedin"> </i>
+        <i class="lab la-github"></i>
+        <i class="lab la-instagram"></i>
+      </div>
+      <footer class="footer-card">
+        <i class="las la-pen"></i>
+      </footer>
+    </div>
+    <div class="content-card">
+      <h1 class="title">Sobre mim</h1>
+      <p class="body">
+        Olá, eu me chamo Rafael, sou novo na área, tenho menos de 1 ano como
+        desenvolvedor web com PHP e 2 anos e um pouquinho em outras linguagens.
+      </p>
+      <footer class="footer-card">
+        <i class="las la-pen"></i>
+      </footer>
+    </div>
+    <div class="content-card" id="container-info">
+      <div class="items-info">
+        <h1>Total de respostas</h1>
+        0
+      </div>
+      <div class="items-info">
+        <h1>Total de perguntas</h1>
+        0
+      </div>
+      <div class="items-info">
+        <h1>Total de amigos</h1>
+        0
+      </div>
+      <div class="items-info">
+        <h1>Desde</h1>
+        10/12/2021
+      </div>
+    </div>
+    <div class="content-card">
+      <h1 class="title">Skills</h1>
+      <footer class="footer-card">
+        <ul class="ul-list">
+          <li class="items-list">Angular</li>
+          <li class="items-list">Vue Js</li>
+        </ul>
+        <i class="las la-plus"></i>
+      </footer>
+    </div>
+  </main>
+  <!-- <div class="bg-img">
+    <img src="assets/img/profile/img.svg" alt="" class="banner" />
+  </div> -->
+</section>

@@ -23,6 +23,7 @@ import { InputComponent } from './components/templates/microTemplates/input/inpu
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { ProfileComponent } from './components/views/profile/profile.component';
+import { NotImagePipe } from './filters/not-image.pipe';
 
 
 
@@ -39,7 +40,8 @@ import { ProfileComponent } from './components/views/profile/profile.component';
     FormComponent,
     InputComponent,
     PageNotFoundComponentComponent,
-    ProfileComponent
+    ProfileComponent,
+    NotImagePipe
   ],
   imports: [
     BrowserModule,
