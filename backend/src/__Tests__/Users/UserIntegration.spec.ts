@@ -4,7 +4,6 @@ import mongoose from 'mongoose'
 
 import { UserLog, UserLogTwo } from '../factory'
 describe('Authentication', () => {
-  let _id = ''
   let tokenForTest = ''
   // Create a new user Tests
   it('should be able to create a user With router', async () => {
@@ -16,7 +15,6 @@ describe('Authentication', () => {
     })
     expect(response.status).toBe(200)
     expect(response.body).toHaveProperty('User._id')
-    _id = response.body.User._id
   })
 
   it('should not able to create a new User, when have a same Email', async () => {
@@ -151,18 +149,12 @@ describe('Authentication', () => {
   // test if able to Delete user
   it('should  able to dele one User', async () => {
     const response = await request(app).delete('/user').send({
-      _id: _id
     }).set('Authorization', 'bearertoken ' + tokenForTest)
     expect(response.status).toBe(200)
+    console.log(response.body)
     expect(response.body).toHaveProperty('message')
   })
 
-  it('should not able delete one user without your _id', async () => {
-    const response = await request(app).delete('/user').send({
-    }).set('Authorization', 'bearertoken ' + tokenForTest)
-    expect(response.status).toBe(406)
-    expect(response.body).toHaveProperty('message')
-  })
   // finish the test about deleting one user
 
   // this script only to delete dabase when test is finished

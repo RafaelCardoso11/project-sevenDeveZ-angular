@@ -5,6 +5,7 @@ export interface QuestionInterface extends Document{
     body: string;
     tags: string;
     author: string;
+    totalComments: number;
   }
 export type IQuestion = QuestionInterface;
 export type IQuestionModel = Model<IQuestion>;
@@ -22,15 +23,20 @@ export const QuestionSchema: Schema<IQuestion> = new Schema({
   },
   tags: {
     type: String,
-    required: [true, 'Please enter a Tags']
+    required: [true, 'Please enter a Tags'],
+    minlength: [3, 'Minimum body tags is 3, characters']
+  },
+  totalComments: {
+    type: Number,
+    required: [true, 'Please enter a totalComments']
   },
   author: {
     type: String,
     required: [true, 'Please enter a Author'],
-    minlength: [4, 'Minimum body length is 4 characters']
+    minlength: [4, 'Minimum body author is 4 characters']
   }
 }, {
   timestamps: true
 })
 
-export const User: IQuestionModel = model<IQuestion, IQuestionModel>('Question', QuestionSchema)
+export const QuestionModel: IQuestionModel = model<IQuestion, IQuestionModel>('Question', QuestionSchema)
